@@ -3,7 +3,6 @@
     align-items: center;
     justify-content: center;
     color: #fff;
-    height: 100vh;
 }
 
 .formWrapper {
@@ -90,7 +89,6 @@ footer a:hover {
 .mainWrap {
     display: grid;
     grid-template-columns: 230px 1fr;
-    height: 100vh;
 }
 
 .aside {
@@ -134,9 +132,9 @@ footer a:hover {
     margin-top: 20px;
 }
 
-.CodeMirror {
+.editor {
     min-height: calc(100vh - 20px);
     font-size: 20px;
     line-height: 1.6;
-    padding-top: 20px;
+    padding-top: 10px;
 }
