@@ -1,7 +1,7 @@
 import { io } from 'socket.io-client';
 
 export const initSocket = async () => {
-    const BACKEND_URL = process.env.REACT_APP_BACKEND_URL || 'https://localhost:5000'; 
+    const BACKEND_URL = import.meta.env.VITE_APP_BACKEND_URL || 'https://localhost:5000'; 
 
     const options = {
         'force new connection': true,

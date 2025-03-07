@@ -15,6 +15,9 @@ export const EditorPage = () => {
   const { roomId } = useParams();
   const socketRef = useRef();
   const location = useLocation();
+
+  const [clients, setClients] = useState([]);
+
   useEffect(() => {
     const init = async () => {
       socketRef.current = await initSocket();
@@ -29,15 +32,22 @@ export const EditorPage = () => {
         roomId,
         userName: location.state?.userName,
       });
+
+      //listening for joined event
+      socketRef.current.on(
+        ACTIONS.JOINED,
+        ({ clients, userName, socketId }) => {
+          if (userName !== location.state?.userName) {
+            toast.success(`${userName} joined the room.`);
+            console.log(`${userName} joined`);
+          }
+          setClients(clients);
+        }
+      );
     };
     init();
   }, []);
-  const [clients, setClients] = useState([
-    { socketId: 1, userName: "user1" },
-    { socketId: 2, userName: "user2" },
-    { socketId: 3, userName: "user3" },
-    { socketId: 4, userName: "user4" },
-  ]);
+
 
   if (!location.state) {
     return <Navigate to="/" />;
