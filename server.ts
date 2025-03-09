@@ -1,8 +1,8 @@
 import express from 'express';
 import http from 'http';
 import {Server} from 'socket.io';
-// import ACTIONS from './src/actions';
 import ACTIONS from './src/Actions';
+
 
 const app=express();
 const server=http.createServer(app);
@@ -23,7 +23,7 @@ io.on('connection',(socket)=>{
         socket.join(roomId);
         const clients=getAllConnectedClients(roomId);
         clients.forEach(({socketId})=>{
-            io.to(socketId).emit(ACTION.JOINED,{
+            io.to(socketId).emit(ACTIONS.JOINED,{
                 clients,
                 userName,
                 socketId: socket.id,
